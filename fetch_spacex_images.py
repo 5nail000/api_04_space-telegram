@@ -1,6 +1,7 @@
-from _download_images import *
 import argparse
-import requests
+
+from base_functions import *
+
 
 def fetch_spacex_images(launch_id, folder = 'images'):
 
@@ -25,7 +26,7 @@ def fetch_spacex_images(launch_id, folder = 'images'):
             zeroes = ""
 
         name = f'spacex_{launch_id}_{zeroes}{index}.jpg'
-        download_images(image, file_name= name, folder= folder)
+        download_image(image, file_name= name, folder= folder)
         print (name)
     
     return True
@@ -39,6 +40,7 @@ def main():
     print (f"{args.id} Launch. Getting links of images.")
 
     if fetch_spacex_images(int(args.id)): print (f"Image seqene downloading is done")
+
 
 if __name__ == '__main__':
     main()
