@@ -3,11 +3,11 @@ from urllib.parse import urlparse
 from base_functions import *
 
 
-def fetch_nasa_apod(folder = 'images'):
+def fetch_nasa_apod(folder = 'images', count = 30):
     url = f'https://api.nasa.gov/planetary/apod'
     params = {
         'api_key' : NASA_KEY,
-        'count': 30
+        'count': count
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
