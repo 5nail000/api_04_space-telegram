@@ -7,7 +7,7 @@ def fetch_nasa_epic(natural= True, folder= 'images'):
     url = f'https://api.nasa.gov/EPIC/api/'
     if natural: collection_type = 'natural'
     else: collection_type = 'enhanced'
-    url = url + collection_type
+    url = f'{url}{collection_type}'
     params = {'api_key' : NASA_KEY}
     response = requests.get(url, params=params)
     response.raise_for_status()
