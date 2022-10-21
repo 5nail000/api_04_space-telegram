@@ -1,6 +1,9 @@
+import os
+import requests
+from base_functions import download_image
 from urllib.parse import urlparse
+from dotenv import load_dotenv
 
-from base_functions import *
 
 
 def fetch_nasa_apod(folder = 'images', count = 30):
@@ -28,5 +31,4 @@ if __name__ == '__main__':
     
     load_dotenv()
     NASA_KEY = os.getenv('NASA_KEY')
-
     fetch_nasa_apod()

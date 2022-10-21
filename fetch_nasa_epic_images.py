@@ -1,6 +1,7 @@
-from urllib.parse import urlparse
-
-from base_functions import *
+import os
+import requests
+from base_functions import download_image
+from dotenv import load_dotenv
 
 
 def fetch_nasa_epic(natural= True, folder= 'images'):

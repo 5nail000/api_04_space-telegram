@@ -1,8 +1,10 @@
+import os
 import time
 import random
 
-from base_functions import *
-from telegram_send_photo import *
+from base_functions import pick_all_imagefiles
+from telegram_send_photo import send_telegram_photo
+from dotenv import load_dotenv
 
 
 def send_telegram_unlimit(token, chat_id, sleep_time = 4, folder = 'images'):

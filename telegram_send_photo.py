@@ -1,8 +1,10 @@
+import os
 import random
-from telegram.ext import *
+from telegram.ext import Updater
 from urllib.parse import urlparse
+from dotenv import load_dotenv
 
-from base_functions import *
+from base_functions import pick_all_imagefiles
 
 
 def send_telegram_photo(token, chat_id, image = None, caption = None):

@@ -1,12 +1,7 @@
 import os
-import requests
-import pprint
 from os import listdir
 from os.path import isfile, join
-from dotenv import load_dotenv
-
-
-pp = pprint.PrettyPrinter(indent=4)
+import requests
 
 
 def pick_all_imagefiles(mypath = 'images'):
