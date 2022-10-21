@@ -15,7 +15,8 @@ def send_telegram_photo(token, chat_id, image = None, caption = None):
 
     parsed_link = urlparse(image)
     if parsed_link.hostname is None: 
-        dp.bot.send_photo(chat_id= chat_id, photo=open(image, 'rb'), caption= caption)
+        with open(image, 'rb') as image_file:
+            dp.bot.send_photo(chat_id= chat_id, photo= image_file, caption= caption)
     else: dp.bot.send_photo(chat_id= chat_id, photo=image, caption= caption)
 
 if __name__ == '__main__':
