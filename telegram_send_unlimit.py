@@ -12,11 +12,8 @@ def send_telegram_unlimit(token, chat_id, sleep_time = 4, folder = 'images'):
     all_images = pick_all_imagefiles(folder)
     while True:
         for image in all_images:
-            try:
                 send_telegram_photo(token= token, chat_id= chat_id, image= image)
                 time.sleep(60*60*float(sleep_time))
-            except:
-                True
         random.shuffle(all_images)
 
 
