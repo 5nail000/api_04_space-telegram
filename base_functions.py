@@ -6,12 +6,6 @@ from os.path import isfile, join
 from dotenv import load_dotenv
 
 
-load_dotenv()
-BOT_TOKEN = os.getenv('bot_token')
-CHAT_ID = os.getenv('chat_id')
-NASA_KEY = os.getenv('nasa_key')
-SLEEP_HOURS = os.getenv('sleep_hours')
-
 pp = pprint.PrettyPrinter(indent=4)
 
 

@@ -24,4 +24,8 @@ def fetch_nasa_apod(folder = 'images', count = 30):
 
 
 if __name__ == '__main__':
+    
+    load_dotenv()
+    NASA_KEY = os.getenv('NASA_KEY')
+
     fetch_nasa_apod()
