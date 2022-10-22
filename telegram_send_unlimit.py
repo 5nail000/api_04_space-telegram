@@ -22,6 +22,6 @@ if __name__ == '__main__':
     load_dotenv()
     TG_TOKEN = os.getenv('TG_TOKEN')
     TG_CHAT_ID = os.getenv('TG_CHAT_ID')
-    SLEEP_HOURS = os.getenv('SLEEP_HOURS')
+    SLEEP_HOURS = int(os.getenv('SLEEP_HOURS', default=4))
 
     send_telegram_unlimit(token= TG_TOKEN, chat_id= TG_CHAT_ID, sleep_time= SLEEP_HOURS)
