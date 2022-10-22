@@ -10,16 +10,18 @@ def fetch_spacex_images(launch_id, folder = 'images'):
     url = 'https://api.spacexdata.com/v5/launches/'
     response = requests.get(url)
     response.raise_for_status()
+    response_dict = response.json()
 
-    if launch_id > len(response.json()): 
-        print (f'Non-existent launch. Total launches is {len(response.json())}')
+    if launch_id > len(response_dict): 
+        print (f'Non-existent launch. Total launches is {len(response_dict)}')
         return False
 
-    current_id = response.json()[launch_id]['id']
+    current_id = response_dict[launch_id]['id']
     url = f'https://api.spacexdata.com/v5/launches/{current_id}'
     response = requests.get(url)
     response.raise_for_status()
-    images_sequense = response.json()['links']['flickr']['original']
+    response_dict = response.json()
+    images_sequense = response_dict['links']['flickr']['original']
 
     if len(images_sequense) == 0:
         return False
