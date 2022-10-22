@@ -12,7 +12,7 @@ def download_image(link, file_name = None, folder = 'images'):
     response = requests.get(link)
     response.raise_for_status()
 
-    if not os.path.exists(folder): os.makedirs(folder)
+    os.makedirs(folder, exist_ok= True)
     if isinstance(file_name, type(None)):
         file_name = link.split('/')[-1]
 
