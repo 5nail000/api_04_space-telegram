@@ -18,13 +18,13 @@ pip install -r requirements.txt
 
 Имена для переменных:
 
-**nasa_key** - Для NASA API
+**NASA_KEY** - Для NASA API
 
-**bot_token** - Для токена TELEGRAM-BOTа
+**TG_TOKEN** - Для токена TELEGRAM-BOTа
 
-**chat_id** - Для ID канала
+**TG_CHAT_ID** - Для ID канала
 
-**sleep_hours** - Для задержки
+**SLEEP_HOURS** - Для задержки
 
 ## Файл base_functions.py
 
