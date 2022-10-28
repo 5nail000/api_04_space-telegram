@@ -20,8 +20,12 @@ def send_telegram_unlimit(token, chat_id, sleep_time = 4, folder = 'images'):
 if __name__ == '__main__':
 
     load_dotenv()
-    TG_TOKEN = os.getenv('TG_TOKEN')
-    TG_CHAT_ID = os.getenv('TG_CHAT_ID')
+    
     SLEEP_HOURS = int(os.getenv('SLEEP_HOURS', default=4))
-
-    send_telegram_unlimit(token= TG_TOKEN, chat_id= TG_CHAT_ID, sleep_time= SLEEP_HOURS)
+    try:
+        TG_TOKEN = os.environ['TG_TOKEN']
+        TG_CHAT_ID = os.environ['TG_CHAT_ID']
+    except Exception as _ex: 
+        print (f'KeyError: {_ex}')
+    else:
+        send_telegram_unlimit(token= TG_TOKEN, chat_id= TG_CHAT_ID, sleep_time= SLEEP_HOURS)

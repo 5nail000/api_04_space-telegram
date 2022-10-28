@@ -33,6 +33,10 @@ def fetch_nasa_epic(natural= True, folder= 'images'):
 if __name__ == '__main__':
 
     load_dotenv()
-    NASA_KEY = os.getenv('NASA_KEY')
 
-    fetch_nasa_epic()
+    try:
+        NASA_KEY = os.environ['NASA_KEY']
+    except Exception as _ex: 
+        print (f'KeyError: {_ex}')
+    else:
+        fetch_nasa_epic()
