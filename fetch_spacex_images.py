@@ -13,8 +13,7 @@ def fetch_spacex_images(launch_id, folder = 'images'):
     response_dict = response.json()
 
     if launch_id > len(response_dict): 
-        print (f'Non-existent launch. Total launches is {len(response_dict)}')
-        return False
+        return len(response_dict)
 
     current_id = response_dict[launch_id]['id']
     url = f'https://api.spacexdata.com/v5/launches/{current_id}'
@@ -50,9 +49,13 @@ if __name__ == '__main__':
         print ('\nLets get first images (Launch ID= 12)')
         id = 12
 
-    if fetch_spacex_images(id): 
+    fetch_is = fetch_spacex_images(id)
+
+    if fetch_is == True:
         print (f"\nImage seqene downloading is done\n")
-    else:
+    elif fetch_is == False: 
         print (f"\nlaunch you have specified has no images\n")
+    else:
+        print (f'Non-existent launch. Total launches is {fetch_is}')
     
     sleep(1)
