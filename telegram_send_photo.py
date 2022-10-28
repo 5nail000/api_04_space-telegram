@@ -1,5 +1,7 @@
 import os
 import random
+
+from requests.exceptions import ConnectionError
 from telegram.ext import Updater
 from urllib.parse import urlparse
 from dotenv import load_dotenv
@@ -20,12 +22,12 @@ def send_telegram_photo(token, chat_id, image = None, caption = None):
         with open(image, 'rb') as image_file:
             try:
                 dp.bot.send_photo(chat_id= chat_id, photo= image_file, caption= caption)
-            except:
+            except ConnectionError :
                 return False
     else: 
         try:
             dp.bot.send_photo(chat_id= chat_id, photo=image, caption= caption)
-        except:
+        except ConnectionError :
             return False
         
 
