@@ -7,7 +7,7 @@ import os
 
 
 def pick_all_imagefiles(folder = 'images'):
-    return [ Path.cwd()/folder/f for f in listdir(folder) if isfile(join(folder, f))]
+    return [ Path.cwd()/folder/filename for filename in listdir(folder) if isfile(join(folder, filename))]
 
 
 def download_image(link, file_name = "", folder = 'images'):
