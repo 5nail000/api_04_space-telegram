@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 
 
 
-def fetch_nasa_apod(folder = 'images', count = 30):
+def fetch_nasa_apod(nasa_key, folder = 'images', count = 30):
     url = f'https://api.nasa.gov/planetary/apod'
     params = {
-        'api_key' : NASA_KEY,
+        'api_key' : nasa_key,
         'count': count
     }
     response = requests.get(url, params=params)
@@ -32,8 +32,8 @@ if __name__ == '__main__':
     load_dotenv()
 
     try:
-        NASA_KEY = os.environ['NASA_KEY']
+        nasa_key = os.environ['NASA_KEY']
     except Exception as _ex: 
         print (f'KeyError: {_ex}')
     else:
-        fetch_nasa_apod()
+        fetch_nasa_apod(nasa_key)

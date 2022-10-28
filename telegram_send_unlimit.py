@@ -21,11 +21,11 @@ if __name__ == '__main__':
 
     load_dotenv()
     
-    SLEEP_HOURS = int(os.getenv('SLEEP_HOURS', default=4))
+    sleep_hours = float(os.getenv('SLEEP_HOURS', default=4))
     try:
-        TG_TOKEN = os.environ['TG_TOKEN']
-        TG_CHAT_ID = os.environ['TG_CHAT_ID']
+        tg_token = os.environ['TG_TOKEN']
+        tg_chat_id = os.environ['TG_CHAT_ID']
     except Exception as _ex: 
         print (f'KeyError: {_ex}')
     else:
-        send_telegram_unlimit(token= TG_TOKEN, chat_id= TG_CHAT_ID, sleep_time= SLEEP_HOURS)
+        send_telegram_unlimit(token= tg_token, chat_id= tg_chat_id, sleep_time= sleep_hours)

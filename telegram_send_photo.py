@@ -33,9 +33,9 @@ if __name__ == '__main__':
 
     load_dotenv()
     try:
-        TG_TOKEN = os.environ['TG_TOKEN']
-        TG_CHAT_ID = os.environ['TG_CHAT_ID']
+        tg_token = os.environ['TG_TOKEN']
+        tg_chat_id = os.environ['TG_CHAT_ID']
     except Exception as _ex: 
         print (f'KeyError: {_ex}')
     else:
-        send_telegram_photo(token= TG_TOKEN, chat_id= TG_CHAT_ID)
+        send_telegram_photo(token= tg_token, chat_id= tg_chat_id)

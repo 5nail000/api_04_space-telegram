@@ -4,12 +4,12 @@ from base_functions import download_image
 from dotenv import load_dotenv
 
 
-def fetch_nasa_epic(natural= True, folder= 'images'):
+def fetch_nasa_epic(nasa_key, natural= True, folder= 'images'):
     url = f'https://api.nasa.gov/EPIC/api/'
     if natural: collection_type = 'natural'
     else: collection_type = 'enhanced'
     url = f'{url}{collection_type}'
-    params = {'api_key' : NASA_KEY}
+    params = {'api_key' : nasa_key}
     response = requests.get(url, params=params)
     response.raise_for_status()
 
@@ -35,8 +35,8 @@ if __name__ == '__main__':
     load_dotenv()
 
     try:
-        NASA_KEY = os.environ['NASA_KEY']
+        nasa_key = os.environ['NASA_KEY']
     except Exception as _ex: 
         print (f'KeyError: {_ex}')
     else:
-        fetch_nasa_epic()
+        fetch_nasa_epic(nasa_key)
