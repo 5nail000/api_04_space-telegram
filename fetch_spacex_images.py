@@ -27,12 +27,8 @@ def fetch_spacex_images(launch_id, folder = 'images'):
         return False
 
     for index, image in enumerate(images_sequense, 1):
-        if len(str(len(images_sequense)))>len(str(index)): 
-            zeroes = '0' * (len(str(len(images_sequense))) - len(str(index)))
-        else:
-            zeroes = ""
-
-        name = f'spacex_{launch_id}_{zeroes}{index}.jpg'
+        index = '{:02d}'.format(index)
+        name = f"spacex_{launch_id}_{index}.jpg"
         download_image(image, file_name= name, folder= folder)
         print (name)
     
