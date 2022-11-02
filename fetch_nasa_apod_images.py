@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     try:
         nasa_key = os.environ['NASA_KEY']
-    except Exception as _ex: 
+    except KeyError as _ex: 
         print (f'KeyError: {_ex}')
     else:
         fetch_nasa_apod(nasa_key)

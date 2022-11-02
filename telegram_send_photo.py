@@ -1,7 +1,7 @@
 import os
 import random
 
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError, HTTPError, Timeout
 from telegram.ext import Updater
 from urllib.parse import urlparse
 from dotenv import load_dotenv
@@ -22,12 +22,12 @@ def send_telegram_photo(token, chat_id, image = None, caption = None):
         with open(image, 'rb') as image_file:
             try:
                 dp.bot.send_photo(chat_id= chat_id, photo= image_file, caption= caption)
-            except ConnectionError :
+            except ConnectionError and HTTPError and Timeout:
                 return False
     else: 
         try:
             dp.bot.send_photo(chat_id= chat_id, photo=image, caption= caption)
-        except ConnectionError :
+        except ConnectionError and HTTPError and Timeout:
             return False
         
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     try:
         tg_token = os.environ['TG_TOKEN']
         tg_chat_id = os.environ['TG_CHAT_ID']
-    except Exception as _ex: 
+    except KeyError as _ex: 
         print (f'KeyError: {_ex}')
     else:
         send_telegram_photo(token= tg_token, chat_id= tg_chat_id)

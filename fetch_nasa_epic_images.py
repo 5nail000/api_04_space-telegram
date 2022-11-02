@@ -22,7 +22,7 @@ def fetch_nasa_epic(nasa_key, natural= True, folder= 'images'):
         image_link = f'https://epic.gsfc.nasa.gov/archive/{collection_type}/{image_date}/jpg/{image_name}.jpg'
         
         file_name = f'nasa_{collection_type}_{image_name}.jpg'
-
+        
         download_image(image_link, file_name= file_name, folder= folder)
 
     return True
@@ -34,7 +34,8 @@ if __name__ == '__main__':
 
     try:
         nasa_key = os.environ['NASA_KEY']
-    except Exception as _ex: 
+    except KeyError as _ex: 
         print (f'KeyError: {_ex}')
     else:
-        fetch_nasa_epic(nasa_key)
+        if fetch_nasa_epic(nasa_key):
+            print ('Job done')
