@@ -37,19 +37,11 @@ def fetch_spacex_images(launch_id, folder = 'images'):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("id", help="Launch id")
+    parser.add_argument("-id", help="Launch id", default= 12)
 
-    launch_id = 0
-    try:
-        args = parser.parse_args()
-        print (f"\n{args.id} Launch. Getting links of images.")
-        launch_id = int(args.id)
-        
-    except:
-        print ('\nLets get first images (Launch ID= 12)')
-        launch_id = 12
-
-    fetch_is = fetch_spacex_images(id)
+    args = parser.parse_args()
+    print (f"\n{args.id} Launch. Getting links of images.")
+    fetch_is = fetch_spacex_images(int(args.id))
 
     if fetch_is == True:
         print (f"\nImage seqene downloading is done\n")
