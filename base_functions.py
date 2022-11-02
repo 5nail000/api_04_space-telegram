@@ -15,7 +15,7 @@ def download_image(link, file_name = "", folder = 'images'):
     response.raise_for_status()
 
     os.makedirs(folder, exist_ok= True)
-    if len(file_name) == 0:
+    if len(file_name) < 1:
         file_name = link.split('/')[-1]
 
     with open(Path.cwd()/folder/file_name, 'wb') as file:
