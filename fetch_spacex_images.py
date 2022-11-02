@@ -39,15 +39,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("id", help="Launch id")
 
-    id = 0
+    launch_id = 0
     try:
         args = parser.parse_args()
         print (f"\n{args.id} Launch. Getting links of images.")
-        id = int(args.id)
+        launch_id = int(args.id)
         
     except:
         print ('\nLets get first images (Launch ID= 12)')
-        id = 12
+        launch_id = 12
 
     fetch_is = fetch_spacex_images(id)
 
