@@ -6,16 +6,17 @@ from base_functions import download_image
 from dotenv import load_dotenv
 
 
-def fetch_nasa_epic(nasa_key, natural= True, folder= 'images'):
-    url = f'https://api.nasa.gov/EPIC/api/'
-    if natural: collection_type = 'natural'
-    else: collection_type = 'enhanced'
-    url = f'{url}{collection_type}'
+def get_nasa_epic_request(url, nasa_key):
     params = {'api_key' : nasa_key}
     response = requests.get(url, params=params)
     response.raise_for_status()
+    return response.json()
 
-    for image in response.json():
+def fetch_nasa_epic(nasa_key, natural= True, folder= 'images'):
+    if natural: collection_type = 'natural'
+    else: collection_type = 'enhanced'
+
+    for image in get_nasa_epic_request(f'https://api.nasa.gov/EPIC/api/{collection_type}', nasa_key):
 
         image_name = image['image']
         image_date = datetime.fromisoformat(image['date']).strftime('%Y/%m/%d')

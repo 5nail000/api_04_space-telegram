@@ -4,22 +4,20 @@ import requests
 from time import sleep
 from base_functions import download_image
 
+def get_spacex_request(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
 
 def fetch_spacex_images(launch_id, folder = 'images'):
 
-    url = 'https://api.spacexdata.com/v5/launches/'
-    response = requests.get(url)
-    response.raise_for_status()
-    response_dict = response.json()
+    response_dict = get_spacex_request('https://api.spacexdata.com/v5/launches/')
 
     if launch_id > len(response_dict): 
         return len(response_dict)
 
     current_id = response_dict[launch_id]['id']
-    url = f'https://api.spacexdata.com/v5/launches/{current_id}'
-    response = requests.get(url)
-    response.raise_for_status()
-    response_dict = response.json()
+    response_dict = get_spacex_request (f'https://api.spacexdata.com/v5/launches/{current_id}')
     images_sequense = response_dict['links']['flickr']['original']
 
     if len(images_sequense) == 0:
