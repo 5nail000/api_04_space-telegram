@@ -3,7 +3,6 @@ import random
 
 from requests.exceptions import ConnectionError, HTTPError, Timeout
 from telegram.ext import Updater
-from urllib.parse import urlparse
 from dotenv import load_dotenv
 
 from base_functions import pick_all_imagefiles
@@ -30,11 +29,7 @@ def send_telegram_photo(token, chat_id, image, url = True , caption = None):
 if __name__ == '__main__':
 
     load_dotenv()
-    try:
-        tg_token = os.environ['TG_TOKEN']
-        tg_chat_id = os.environ['TG_CHAT_ID']
-    except KeyError as _ex: 
-        print (f'KeyError: {_ex}')
-    else:
-        image = random.choice(pick_all_imagefiles())
-        send_telegram_photo(token= tg_token, chat_id= tg_chat_id, image= image, url= False)
+    tg_token = os.environ['TG_TOKEN']
+    tg_chat_id = os.environ['TG_CHAT_ID']
+    image = random.choice(pick_all_imagefiles())
+    send_telegram_photo(token= tg_token, chat_id= tg_chat_id, image= image, url= False)
