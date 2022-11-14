@@ -120,7 +120,7 @@ py telegram_send_photo.py -i image.jpg
 ```
 или
 ```
-py telegram_send_photo.py --image picture_filename.jpg
+py telegram_send_photo.py --image 'image folder/picture_filename.jpg'
 ```
 
 **ФУНКЦИЯ send_telegram_photo**
