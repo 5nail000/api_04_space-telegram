@@ -37,7 +37,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--image', help="image filename", type= str, default= random.choice(pick_all_imagefiles()))
     args = parser.parse_args()
-    print(args.image)
 
     if isfile(args.image):
         send_telegram_photo(token= tg_token, chat_id= tg_chat_id, image=args.image, url= False)
