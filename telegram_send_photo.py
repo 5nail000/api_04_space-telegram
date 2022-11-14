@@ -1,9 +1,11 @@
 import os
 import random
+import argparse
 
 from requests.exceptions import ConnectionError, HTTPError, Timeout
 from telegram.ext import Updater
 from dotenv import load_dotenv
+from os.path import isfile
 
 from base_functions import pick_all_imagefiles
 
@@ -31,5 +33,13 @@ if __name__ == '__main__':
     load_dotenv()
     tg_token = os.environ['TG_TOKEN']
     tg_chat_id = os.environ['TG_CHAT_ID']
-    image = random.choice(pick_all_imagefiles())
-    send_telegram_photo(token= tg_token, chat_id= tg_chat_id, image= image, url= False)
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--image', help="image filename", type= str, default= random.choice(pick_all_imagefiles()))
+    args = parser.parse_args()
+    print(args.image)
+
+    if isfile(args.image):
+        send_telegram_photo(token= tg_token, chat_id= tg_chat_id, image=args.image, url= False)
+    else:
+        print ('You entered the wrong filename, the file does not exist.')
