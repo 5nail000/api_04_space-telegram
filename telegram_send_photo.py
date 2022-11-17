@@ -12,24 +12,17 @@ from os.path import isfile
 from base_functions import pick_all_imagefiles
 
 
-def send_telegram_photo(token, chat_id, image, url=True, caption=None):
+def send_telegram_photo(token, chat_id, image, caption=None):
 
     updater = Updater(token, use_context=True)
     dp = updater.dispatcher
 
-    if url:
+    with open(image, 'rb') as image_file:
         try:
-            dp.bot.send_photo(chat_id=chat_id, photo=image, caption=caption)
+            dp.bot.send_photo(chat_id=chat_id, photo=image_file, caption=caption)
         except NetworkError and TimedOut:
             time.sleep(10)
             return False
-    else:
-        with open(image, 'rb') as image_file:
-            try:
-                dp.bot.send_photo(chat_id=chat_id, photo=image_file, caption=caption)
-            except NetworkError and TimedOut:
-                time.sleep(10)
-                return False
 
 
 if __name__ == '__main__':
@@ -43,6 +36,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if isfile(args.image):
-        send_telegram_photo(token=tg_token, chat_id=tg_chat_id, image=args.image, url=False)
+        send_telegram_photo(token=tg_token, chat_id=tg_chat_id, image=args.image)
     else:
         print('You entered the wrong filename, the file does not exist.')
