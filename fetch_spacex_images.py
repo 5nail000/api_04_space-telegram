@@ -11,19 +11,21 @@ def get_spacex_request(url):
 
 
 def fetch_spacex_images(launch_id, folder='images'):
-    api_url = 'https://api.spacexdata.com/v5/launches/'
+    api_url = 'https://api.spacexdata.com/v5/launches'
     response_dict = get_spacex_request(api_url)
 
     if launch_id > len(response_dict) - 1:
         existent_text = 'Non-existent launch. Total launches is'
-        raise ValueError(f'{existent_text} {len(response_dict)-1}')
+        print(f'{existent_text} {len(response_dict)-1}')
+        return
 
     current_id = response_dict[launch_id]['id']
     response_dict = get_spacex_request(f'{api_url}/{current_id}')
     images_sequense = response_dict['links']['flickr']['original']
 
     if len(images_sequense) < 1:
-        raise ValueError("\nlaunch you have specified has no images\n")
+        print("\nlaunch you have specified has no images\n")
+        return
 
     for index, image in enumerate(images_sequense, 1):
         index = '{:02d}'.format(index)
