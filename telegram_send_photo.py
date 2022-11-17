@@ -1,9 +1,11 @@
+import argparse
 import os
 import random
-import argparse
+import time
 
-from requests.exceptions import ConnectionError, HTTPError, Timeout
+# from requests.exceptions import ConnectionError, HTTPError, Timeout
 from telegram.ext import Updater
+from telegram.error import NetworkError, TimedOut
 from dotenv import load_dotenv
 from os.path import isfile
 
@@ -18,13 +20,15 @@ def send_telegram_photo(token, chat_id, image, url=True, caption=None):
     if url:
         try:
             dp.bot.send_photo(chat_id=chat_id, photo=image, caption=caption)
-        except ConnectionError and HTTPError and Timeout:
+        except NetworkError and TimedOut:
+            time.sleep(10)
             return False
     else:
         with open(image, 'rb') as image_file:
             try:
                 dp.bot.send_photo(chat_id=chat_id, photo=image_file, caption=caption)
-            except ConnectionError and HTTPError and Timeout:
+            except NetworkError and TimedOut:
+                time.sleep(10)
                 return False
 
 
