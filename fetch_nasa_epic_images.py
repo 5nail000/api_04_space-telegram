@@ -19,7 +19,7 @@ def fetch_nasa_epic(nasa_key, natural=True, folder='images'):
     else:
         collection_type = 'enhanced'
     api_url = f'https://api.nasa.gov/EPIC/api/{collection_type}'
-    for image in get_nasa_epic_request(f'{api_url}', nasa_key):
+    for image in get_nasa_epic_request(api_url, nasa_key):
 
         image_name = image['image']
         image_date = datetime.fromisoformat(image['date']).strftime('%Y/%m/%d')
@@ -30,12 +30,9 @@ def fetch_nasa_epic(nasa_key, natural=True, folder='images'):
 
         download_image(image_link, file_name=file_name, folder=folder)
 
-    return True
-
 
 if __name__ == '__main__':
 
     load_dotenv()
     nasa_key = os.environ['NASA_KEY']
-
-    print('Job done')
+    fetch_nasa_epic(nasa_key)

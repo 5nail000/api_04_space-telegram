@@ -28,8 +28,6 @@ def fetch_nasa_apod(nasa_key, folder='images', count=30):
                 download_image(image_link, file_name=file_name, folder=folder)
                 print(file_name)
 
-    return True
-
 
 if __name__ == '__main__':
 

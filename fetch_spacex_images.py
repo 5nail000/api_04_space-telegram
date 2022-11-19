@@ -21,27 +21,27 @@ def fetch_spacex_images(launch_id, folder='images'):
 
     current_id = response_dict[launch_id]['id']
     response_dict = get_spacex_request(f'{api_url}/{current_id}')
-    images_sequense = response_dict['links']['flickr']['original']
+    images_sequence = response_dict['links']['flickr']['original']
 
-    if len(images_sequense) < 1:
+    if len(images_sequence) < 1:
         print("\nlaunch you have specified has no images\n")
         return
 
-    for index, image in enumerate(images_sequense, 1):
+    for index, image in enumerate(images_sequence, 1):
         index = '{:02d}'.format(index)
         name = f"spacex_{launch_id}_{index}.jpg"
         download_image(image, file_name=name, folder=folder)
         print(name)
 
-    print("\nImage seqene downloading is done\n")
+    print("\nImage sequence downloading is done\n")
 
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-id", help="Launch id", default=12)
+    parser.add_argument("-id", help="Launch id", type=int, default=12)
 
     args = parser.parse_args()
     print(f"\n{args.id} Launch. Getting links of images.")
 
-    fetch_spacex_images(int(args.id))
+    fetch_spacex_images(args.id)

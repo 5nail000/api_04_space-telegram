@@ -3,9 +3,8 @@ import os
 import random
 import time
 
-# from requests.exceptions import ConnectionError, HTTPError, Timeout
+import telegram
 from telegram.ext import Updater
-from telegram.error import NetworkError, TimedOut
 from dotenv import load_dotenv
 from os.path import isfile
 
@@ -20,8 +19,8 @@ def send_telegram_photo(token, chat_id, image, caption=None):
     with open(image, 'rb') as image_file:
         try:
             dp.bot.send_photo(chat_id=chat_id, photo=image_file, caption=caption)
-        except NetworkError and TimedOut:
-            time.sleep(10)
+        except telegram.error.NetworkError:
+            time.sleep(5)
             return False
 
 
